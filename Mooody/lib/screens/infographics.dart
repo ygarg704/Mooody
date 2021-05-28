@@ -20,21 +20,31 @@ class InfoGraphics extends StatelessWidget {
             },
           ),
           backgroundColor: Colors.white),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              child: Image(
-                image: AssetImage('Infographics/final_infographics/1.png'),
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image(
+                        image:
+                            AssetImage('Infographics/final_infographics/1.png'),
+                      ),
+                    ),
+                    Container(
+                      child: Image(
+                        image:
+                            AssetImage('Infographics/final_infographics/2.png'),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Container(
-              child: Image(
-                image: AssetImage('Infographics/final_infographics/2.png'),
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
