@@ -46,136 +46,156 @@ class _ArticleContentState extends State<ArticleContent> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: new Swiper(
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailArticle(
-                              newsUrl: data[index]["url"],
-                            ),
-                          ),
-                        );
-                      },
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(35),
-                                topRight: Radius.circular(35),
-                              ),
-                              child: Image.network(
-                                data[index]["urlToImage"],
-                                fit: BoxFit.cover,
-                                height: 400,
+            Container(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: new Swiper(
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailArticle(
+                                newsUrl: data[index]["url"],
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 350, 0, 0),
-                            child: Container(
-                              height: 300,
-                              width: 400,
-                              child: Material(
-                                borderRadius: BorderRadius.circular(35),
-                                elevation: 10,
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 20, 10, 20),
-                                      child: Text(
-                                        data[index]["title"],
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: HexColor('266a68'),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 3,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 10, 10, 20),
-                                      child: Text(
-                                        data[index]["description"],
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 6,
-                                      ),
-                                    ),
-                                  ],
+                          );
+                        },
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(35),
+                                  topRight: Radius.circular(35),
+                                ),
+                                child: Image.network(
+                                  data[index]["urlToImage"],
+                                  fit: BoxFit.cover,
+                                  height: 350,
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: data == null ? 0 : data.length,
-                  autoplay: true, //to scroll news cards
-                  viewportFraction: 0.8,
-                  scale: 0.9,
-                  scrollDirection: Axis.horizontal,
-                  //pagination: new SwiperPagination(alignment: Alignment.bottomCenter),
-                  //control: new SwiperControl(),
-                  key: UniqueKey(),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 350, 0, 0),
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.37,
+                                //height: 280,
+                                width: 400,
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(35),
+                                  elevation: 10,
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 20, 10, 20),
+                                        child: Text(
+                                          data[index]["title"],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: HexColor('266a68'),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 10, 10, 20),
+                                        child: Text(
+                                          data[index]["description"],
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 6,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: data == null ? 0 : data.length,
+                    autoplay: true, //to scroll news cards
+                    viewportFraction: 0.8,
+                    scale: 0.9,
+                    scrollDirection: Axis.horizontal,
+                    //pagination: new SwiperPagination(alignment: Alignment.bottomCenter),
+                    //control: new SwiperControl(),
+                    key: UniqueKey(),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              //child: Container(
+              //width: MediaQuery.of(context).size.width,
+              //height: 80,
               child: Card(
                 color: HexColor('f15944'),
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-                      child: Text(
-                        'Infographics',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      //Container(
+                      //margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+                      /*child: */ Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'Infographics',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 30),
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => InfoGraphics(),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.arrow_forward_ios),
-                        foregroundColor: HexColor('#f15944'),
-                        backgroundColor: Colors.white,
-                        mini: true,
+                      // ),
+                      //Container(
+                      // margin: EdgeInsets.symmetric(horizontal: 30),
+                      /*child:*/ Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => InfoGraphics(),
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.arrow_forward_ios),
+                          foregroundColor: HexColor('#f15944'),
+                          backgroundColor: Colors.white,
+                          mini: true,
+                        ),
                       ),
-                    ),
-                  ],
+                      //),
+                    ],
+                  ),
                 ),
               ),
+              //),
             ),
           ],
         ),
