@@ -48,96 +48,92 @@ class _ArticleContentState extends State<ArticleContent> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: new Swiper(
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailArticle(
-                                newsUrl: data[index]["url"],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: new Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailArticle(
+                              newsUrl: data[index]["url"],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(35),
+                                topRight: Radius.circular(35),
+                              ),
+                              child: Image.network(
+                                data[index]["urlToImage"],
+                                fit: BoxFit.cover,
+                                height: 350,
                               ),
                             ),
-                          );
-                        },
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(35),
-                                  topRight: Radius.circular(35),
-                                ),
-                                child: Image.network(
-                                  data[index]["urlToImage"],
-                                  fit: BoxFit.cover,
-                                  height: 350,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 350, 0, 0),
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.37,
-                                //height: 280,
-                                width: 400,
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(35),
-                                  elevation: 10,
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 20, 10, 20),
-                                        child: Text(
-                                          data[index]["title"],
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: HexColor('266a68'),
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 3,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 350, 0, 0),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.37,
+                              //height: 280,
+                              width: 400,
+                              child: Material(
+                                borderRadius: BorderRadius.circular(35),
+                                elevation: 10,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 20, 10, 20),
+                                      child: Text(
+                                        data[index]["title"],
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor('266a68'),
                                         ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 3,
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 10, 10, 20),
-                                        child: Text(
-                                          data[index]["description"],
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 6,
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 10, 10, 20),
+                                      child: Text(
+                                        data[index]["description"],
+                                        style: TextStyle(
+                                          fontSize: 15,
                                         ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 6,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                    itemCount: data == null ? 0 : data.length,
-                    autoplay: true, //to scroll news cards
-                    viewportFraction: 0.8,
-                    scale: 0.9,
-                    scrollDirection: Axis.horizontal,
-                    //pagination: new SwiperPagination(alignment: Alignment.bottomCenter),
-                    //control: new SwiperControl(),
-                    key: UniqueKey(),
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  itemCount: data == null ? 0 : data.length,
+                  autoplay: true, //to scroll news cards
+                  viewportFraction: 0.8,
+                  scale: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  //pagination: new SwiperPagination(alignment: Alignment.bottomCenter),
+                  //control: new SwiperControl(),
+                  key: UniqueKey(),
                 ),
               ),
             ),
